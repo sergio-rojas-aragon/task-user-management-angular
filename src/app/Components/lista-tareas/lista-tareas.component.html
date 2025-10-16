@@ -1,0 +1,20 @@
+<div *ngIf="cargando">Cargando tareas</div>
+
+<table *ngIf="!cargando && tareas.length > 0" border="1">
+
+    <thead>
+        <th>Titulo</th>
+        <th>Descripcion</th>
+        <th>Estado</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of tareas">
+            <td> {{ t.titulo }}</td>
+            <td>{{ t.descripcion }}</td>
+            <td>{{ t.estado }}</td>
+        </tr>
+    </tbody>
+
+</table>
+
+<div *ngIf="!cargando && tareas.length === 0">no hay tareas</div>

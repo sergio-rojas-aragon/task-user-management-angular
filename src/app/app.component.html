@@ -1,18 +1,25 @@
 <mat-toolbar color="primary">
   <span>Gestion Tareas Usuarios</span>
   <span class="spacer"></span>
-  <button mat-button routerLink="/inicio">Inicio</button>
-  <button mat-button routerLink="/login">login</button>
-  <button mat-button [matMenuTriggerFor]="menu" aria-label="Módulos">
-      <mat-icon>menu</mat-icon>
+  <button mat-button routerLink="/inicio" *ngIf="!isAuthenticated" >Inicio</button>
+  <button mat-button routerLink="/bienvenido" *ngIf="isAuthenticated" >Dashboard</button>
+  <button mat-button routerLink="/login" *ngIf="!isAuthenticated">login</button>
+    <button mat-button routerLink="/tareas" *ngIf="isAuthenticated">
+      <mat-icon>dialpad</mat-icon>
+      <span>Tareas</span>
   </button>
-  <mat-menu #menu="matMenu">
+  
+  <button mat-button (click)="onLogout()" *ngIf="isAuthenticated" >Logout</button>
+  <!-- <button mat-button [matMenuTriggerFor]="menu" aria-label="Módulos">
+      <mat-icon>menu</mat-icon>
+  </button> -->
+  <!-- <mat-menu #menu="matMenu">
     
-    <button mat-menu-item routerLink="/tareas">
+    <button mat-menu-item routerLink="/tareas" *ngIf="isAuthenticated">
       <mat-icon>dialpad</mat-icon>
       <span>Tareas</span>
     </button>
-  </mat-menu>
+  </mat-menu> -->
 </mat-toolbar>
 
 

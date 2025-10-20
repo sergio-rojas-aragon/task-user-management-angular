@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TareasService } from '../../services/tareas.service';
+import { TareasService } from '../../services/tareas/tareas.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Tarea } from '../../Models/tarea.model';

@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,37 +35,63 @@ export class LoginComponent {
 
   private fb = inject(FormBuilder);
   loginForm = this.fb.group({
-    usuario: [null, Validators.required],
+    email: [null, Validators.required],
     contrasena: [null, Validators.required]
   });
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     
   }
 
-  onSubmit(): void {
+  // onSubmit(): void {
+
+  //   if (this.loginForm.invalid) {
+  //     this.loginForm.markAllAsTouched;
+  //   }
+
+  //   const { usuario, contrasena } = this.loginForm.value;
+
+  //   // this.authService.login({ usuario, contrasena }).subscribe({
+  //   //   next: (response) => {
+  //   //     console.log("exito");
+  //   //   },
+  //   //   error: (err) => {
+  //   //     console.error("error", err);
+        
+  //   //     if (err.status === 401) {
+  //   //           //this.errorMessage = 'Credenciales inválidas. Verifica tu email y contraseña.';
+  //   //       } else {
+  //   //           //this.errorMessage = 'Ocurrió un error al conectar con el servidor. Inténtalo más tarde.';
+  //   //       }
+  //   //     }
+  //   // })
+
+
+
+  //   alert('Thanks!');
+  // }
+
+  async onSubmit() : Promise<void> {
 
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched;
+      return;
     }
 
-    const { usuario, contrasena } = this.loginForm.value;
+    const { email, contrasena } = this.loginForm.value;
 
-    this.authService.login({ usuario, contrasena }).subscribe({
-      next: (response) => {
-        console.log("exito");
-      },
-      error: (err) => {
-        console.error("error", err);
-        
-        if (err.status === 401) {
-              //this.errorMessage = 'Credenciales inválidas. Verifica tu email y contraseña.';
-          } else {
-              //this.errorMessage = 'Ocurrió un error al conectar con el servidor. Inténtalo más tarde.';
-          }
-        }
-    })
+    const password = contrasena;
 
-    alert('Thanks!');
+    try {
+      const payload = await this.authService.LoginAsync({ email, password });
+      console.log("login OK", payload);
+      this.authService.saveToken(payload.token);
+      this.authService.saveUserData(payload);
+      this.router.navigate(['/bienvenido']);
+      
+    } catch (error) {
+      console.error("error:", error);
+    }
+
   }
 }

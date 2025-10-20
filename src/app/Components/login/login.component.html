@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
   <div class="row ">
     <div class="offset-3 col-lg-6">
       <mat-card class="shipping-card">
@@ -11,11 +11,11 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Usuario</mat-label>
-                <input matInput placeholder="Usuario" formControlName="usuario">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="" formControlName="email">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                @if (addressForm.controls['usuario'].hasError('required')) {
-                  <mat-error>Usuario is <strong>required</strong></mat-error>
+                @if (loginForm.controls['email'].hasError('required')) {
+                  <mat-error>Email is <strong>required</strong></mat-error>
                 }
               </mat-form-field>
               <br><br>
@@ -38,7 +38,7 @@
                     
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
-                  @if (addressForm.controls['contrasena'].hasError('required')) {
+                  @if (loginForm.controls['contrasena'].hasError('required')) {
                     <mat-error>La contraseña es requerida</mat-error>
                   }
                   

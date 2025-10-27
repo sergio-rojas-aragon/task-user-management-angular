@@ -29,7 +29,10 @@
             <tr *ngFor="let c of clientes">
                 <td> {{ c.nombre }}</td>
                 <td>{{ c.email }}</td>
-                <td>ACC</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm me-1" (click)="editarCliente(c.clienteId)">Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm me-1" (click)="eliminarCliente(c.clienteId)">Eliminar</button>
+                </td>
             </tr>
         </tbody>
     </table>

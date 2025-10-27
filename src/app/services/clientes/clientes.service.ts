@@ -31,6 +31,12 @@ export class ClientesService {
 
       ));
   }
+  async EliminarClienteAsync(id : number) : Promise <any> {
+    return await firstValueFrom(this.http.delete<any>(
+        this.apiUrl + '/' + id, 
+        { headers: this.getHeaders() }
+      ));
+  }
   
 
   getHeaders() : any {

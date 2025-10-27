@@ -63,7 +63,7 @@ export class NuevoClienteComponent {
 
   }
 
-esperarYRedirigir(url: string, tiempoMs: number = 6000): void {
+esperarYRedirigir(url: string, tiempoMs: number = 4000): void {
   console.log(`Esperando ${tiempoMs / 1000} segundos antes de redirigir a /${url}...`);
   
   // 3. Usa setTimeout() para introducir el retardo

@@ -1,6 +1,8 @@
 # Gtu
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21 and Node version v20.19.5.
+
+Backend for this project can find in [this](https://github.com/sergio-rojas-aragon/task-user-management-api) Repo.
 
 ## Development server
 

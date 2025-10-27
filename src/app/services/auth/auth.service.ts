@@ -40,10 +40,12 @@ export class AuthService {
 
   saveUserData( payload: any) : void {
 
-    localStorage.setItem("idUsuario", payload.id);
-    localStorage.setItem("nombre", payload.nombre);
-    localStorage.setItem("email", payload.email);
-    console.log('datos guardados');
+    localStorage.setItem("idUsuario", payload.auth.id);
+    localStorage.setItem("nombre", payload.auth.nombre);
+    localStorage.setItem("email", payload.auth.email);
+    localStorage.setItem("rolId", payload.auth.rolDTO.rolId);
+    localStorage.setItem("RolName", payload.auth.rolDTO.nombre);
+    console.log('datos guardados', this.getUserData());
 
   }
 
@@ -52,15 +54,18 @@ export class AuthService {
     localStorage.removeItem("idUsuario");
     localStorage.removeItem("nombre");
     localStorage.removeItem("email");
+    localStorage.removeItem("rolId");
+    localStorage.removeItem("RolName");
     console.log("logOut",localStorage.getItem("auth_token") );
   }
   
   getUserData() : any {
-
     return {
       idUsuario: localStorage.getItem("idUsuario"),
       nombre: localStorage.getItem("nombre"),
-      email: localStorage.getItem("email")
+      email: localStorage.getItem("email"),
+      rolId: localStorage.getItem("rolId"),
+      RolName: localStorage.getItem("RolName"),
 
     }
 

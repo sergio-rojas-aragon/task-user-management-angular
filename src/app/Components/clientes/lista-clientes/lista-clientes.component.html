@@ -1,0 +1,37 @@
+<div class="container">
+
+    <h3 class="my-3">Clientes</h3>
+
+    <button type="button" class="btn btn-primary my-3" routerLink="nuevo-cliente">Nuevo Cliente</button>
+
+    <div *ngIf="cargando" class="d-flex align-items-center justify-content-center my-3">
+        <mat-spinner 
+            [diameter]="20" 
+            [strokeWidth]="2" 
+            color="primary"
+            mode="indeterminate"
+            class="me-2"
+            >
+        </mat-spinner>
+        <span>Cargando clientes...</span>
+    </div>
+
+    <table class="table table-bordered my-3" *ngIf="!cargando">
+        <thead>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Acc</th>
+        </thead>
+        <tbody *ngIf="clientes.length === 0">
+            <td colspan="3" style="text-align: center;">no hay clientes</td>
+        </tbody>
+        <tbody *ngIf="clientes.length > 0">
+            <tr *ngFor="let c of clientes">
+                <td> {{ c.nombre }}</td>
+                <td>{{ c.email }}</td>
+                <td>ACC</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

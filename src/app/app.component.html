@@ -5,10 +5,12 @@
   <button mat-button routerLink="/bienvenido" *ngIf="isAuthenticated" >Dashboard</button>
   <button mat-button routerLink="/login" *ngIf="!isAuthenticated">login</button>
     <button mat-button routerLink="/tareas" *ngIf="isAuthenticated">
-      <mat-icon>dialpad</mat-icon>
       <span>Tareas</span>
   </button>
-  
+    <button mat-button routerLink="/clientes" *ngIf="isAuthenticated">
+      <span>Clientes</span>
+  </button>
+
   <button mat-button (click)="onLogout()" *ngIf="isAuthenticated" >Logout</button>
   <!-- <button mat-button [matMenuTriggerFor]="menu" aria-label="Módulos">
       <mat-icon>menu</mat-icon>

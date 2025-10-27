@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TareasService } from '../../services/tareas/tareas.service';
+import { TareasService } from '../../../services/tareas/tareas.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { Tarea } from '../../Models/tarea.model';
+import { RouterLink, Router } from '@angular/router';
+import { Tarea } from '../../../Models/tarea.model';
+
 
 @Component({
   selector: 'app-lista-tareas',
@@ -15,7 +16,7 @@ export class ListaTareasComponent implements OnInit {
   tareas: Tarea[] = [];
   cargando = true;
 
-  constructor(private tareasService: TareasService) { }
+  constructor(private tareasService: TareasService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -32,5 +33,13 @@ export class ListaTareasComponent implements OnInit {
       }
 
     })
+
+
+  }
+
+  nuevaTareaRedirect(): void {
+      this.router.navigate(['tareas/nueva-tarea']);
   }
 }
+
+

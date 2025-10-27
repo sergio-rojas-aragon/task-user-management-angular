@@ -43,33 +43,6 @@ export class LoginComponent {
     
   }
 
-  // onSubmit(): void {
-
-  //   if (this.loginForm.invalid) {
-  //     this.loginForm.markAllAsTouched;
-  //   }
-
-  //   const { usuario, contrasena } = this.loginForm.value;
-
-  //   // this.authService.login({ usuario, contrasena }).subscribe({
-  //   //   next: (response) => {
-  //   //     console.log("exito");
-  //   //   },
-  //   //   error: (err) => {
-  //   //     console.error("error", err);
-        
-  //   //     if (err.status === 401) {
-  //   //           //this.errorMessage = 'Credenciales inválidas. Verifica tu email y contraseña.';
-  //   //       } else {
-  //   //           //this.errorMessage = 'Ocurrió un error al conectar con el servidor. Inténtalo más tarde.';
-  //   //       }
-  //   //     }
-  //   // })
-
-
-
-  //   alert('Thanks!');
-  // }
 
   async onSubmit() : Promise<void> {
 
@@ -85,7 +58,7 @@ export class LoginComponent {
     try {
       const payload = await this.authService.LoginAsync({ email, password });
       console.log("login OK", payload);
-      this.authService.saveToken(payload.token);
+      this.authService.saveToken(payload.access_token);
       this.authService.saveUserData(payload);
       this.router.navigate(['/bienvenido']);
       

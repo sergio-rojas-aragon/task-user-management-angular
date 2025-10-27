@@ -1,0 +1,57 @@
+<div class="container">
+
+    <h3 class="my-3">Nuevo Cliente</h3>
+
+    <div class="row ">
+      <div class="offset-3 col-lg-6">
+        <form [formGroup]="clienteForm" novalidate (ngSubmit)="onSubmit()" *ngIf="!esconderForm">
+          <mat-card class="shipping-card">
+            <mat-card-content>
+
+                <div class="container">
+                  <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput placeholder="" formControlName="nombre" >
+                    @if (clienteForm.controls['nombre'].hasError('required')) {
+                      <mat-error>Nombre es <strong>requerido</strong></mat-error>
+                    }
+                  </mat-form-field>
+                </div>
+                <div class="container">
+                  <mat-form-field class="full-width" appearance="fill" >
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email"
+                    >
+                      @if (clienteForm.controls['email'].hasError('required')) {
+                        <mat-error>El email es requerido</mat-error>
+                      }
+                      
+                  </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions class="d-flex justify-content-center">
+                  <button mat-raised-button color="primary" class="center" type="submit">Ingresar</button>
+            </mat-card-actions>
+
+          </mat-card>
+        </form>
+      </div>
+    </div>
+
+  <div *ngIf="guardando" class="d-flex align-items-center justify-content-center my-3">
+    <mat-spinner 
+          [diameter]="20" 
+          [strokeWidth]="2" 
+          color="primary"
+          mode="indeterminate"
+          class="me-2"
+          >
+    </mat-spinner>
+    <span>Guardando...</span>
+  </div>
+
+  <div *ngIf="creadoOK" class="d-flex align-items-center justify-content-center my-3">
+    <mat-icon fontIcon="check_circle" class="text-success"></mat-icon>
+    <span>Cliente Creado. Redirigiendo...</span>
+  </div>
+</div>

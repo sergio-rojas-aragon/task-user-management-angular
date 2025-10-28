@@ -14,13 +14,21 @@ export class ClientesService {
 
   constructor(private http: HttpClient, private authService : AuthService) { }
 
-  obtenerCliente(): Observable<Cliente[]> {
+  obtenerClientes(): Observable<Cliente[]> {
 
     // const token = this.authService.getToken();
     // const headers = new HttpHeaders({
     //   'Authorization': `Bearer ${token}`
     // })
     return this.http.get<Cliente[]>(this.apiUrl, {headers: this.getHeaders() });
+  }
+
+  async obtenerClienteAsync( id : number) : Promise <any> {
+    return await firstValueFrom(this.http.get<any>(
+        this.apiUrl + "/" +  id, 
+        { headers: this.getHeaders() }
+
+      ));
   }
 
   async CrearClienteAsync(credentials: any) : Promise <any> {
@@ -34,6 +42,14 @@ export class ClientesService {
   async EliminarClienteAsync(id : number) : Promise <any> {
     return await firstValueFrom(this.http.delete<any>(
         this.apiUrl + '/' + id, 
+        { headers: this.getHeaders() }
+      ));
+  }
+  
+  async ActualizarClienteAsync(id : number, credentials: any) : Promise <any> {
+    return await firstValueFrom(this.http.put<any>(
+        this.apiUrl + '/' + id, 
+        credentials,
         { headers: this.getHeaders() }
       ));
   }

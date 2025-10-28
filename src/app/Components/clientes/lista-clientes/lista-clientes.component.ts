@@ -29,7 +29,7 @@ export class ListaClientesComponent {
    }
 
    cargaClientes() : void {
-      this.clientesService.obtenerCliente().subscribe({
+      this.clientesService.obtenerClientes().subscribe({
         next: (data) => {
           console.log("data clientes", data);
           this.clientes = data;
@@ -63,7 +63,7 @@ export class ListaClientesComponent {
    }
 
    editarCliente( clienteId: number) : void {
-
+     this.router.navigate(["/clientes/editar-cliente", clienteId]);
    }
 
 }

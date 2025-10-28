@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard.guard';
 import { NuevaTareaComponent } from './Components/tareas/nueva-tarea/nueva-tarea.component';
 import { ListaClientesComponent } from './Components/clientes/lista-clientes/lista-clientes.component';
 import { NuevoClienteComponent } from './Components/clientes/nuevo-cliente/nuevo-cliente.component';
+import { EditarClienteComponent } from './Components/clientes/editar-cliente/editar-cliente.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
@@ -21,6 +22,9 @@ export const routes: Routes = [
             canActivate: [AuthGuard]  }, 
     { path: 'clientes/nuevo-cliente', 
             component: NuevoClienteComponent, 
+            canActivate: [AuthGuard]  }, 
+    { path: 'clientes/editar-cliente/:id', 
+            component: EditarClienteComponent, 
             canActivate: [AuthGuard]  }, 
     { path: 'login', component: LoginComponent },
     { path: 'bienvenido', component: BienvenidoDashboardComponent }
